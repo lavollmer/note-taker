@@ -15,20 +15,29 @@
     - Write a new version of that file
 */
 
+//Node js package - express
 const express = require('express');
+// Node js package - path
 const path = require('path');
+// Node js package - fs for writing and reading files
 const fs = require('fs');
+
+// using variable app calling the express function
 const app = express();
 
+// the PORT were information is located
 const PORT = 3001;
 
+// static public files
 app.use(express.static("public"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Send out the home page
+//path join the directory name with the name of the file for an absolute file
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "public/index.html")));
+
 
 app.post("/api/newuser", (req, res) => {
   fs.writeFile("signup.txt", req.body.newuser, (err) => {
@@ -37,6 +46,7 @@ app.post("/api/newuser", (req, res) => {
   })
 })
 
+// to listen at the PORT
 app.listen(PORT, () =>
   console.log(`Express server listening on port ${PORT}!`)
 );

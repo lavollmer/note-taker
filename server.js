@@ -31,6 +31,7 @@ const PORT = 3001;
 // static public files
 app.use(express.static("public"));
 
+//middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -71,6 +72,7 @@ app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./Develop/pub
 //listening for API notes and sending file
 app.get("/api/notes", (req, res) => {
   console.log("hello");
+  //send information to index.html public file
   res.sendFile(path.join(__dirname, "./Develop/public/index.html"));
 })
 
@@ -80,23 +82,31 @@ app.post("/api/notes", (req, res) => {
   let note = req.body.note;
   let notesProduct = note;
 
-  fs.readFile(path.join(__dirname, './notesProduct/db.json'), 'utf-8', function (err, data) {
+  //read the mock database file
+  fs.readFile(path.join(__dirname, './Develop/db/db.json'), 'utf-8', function (err, data) {
     if (err) {
       console.log(err);
+      res.status(200).send("Error");
+      return
+    } else {
       data = JSON.parse(data)
       data.push(notesProduct);
-
-      fs.writeFile(path.join(__dirname, './notesProduct/db.json'), JSON.stringify(data), function (err) {
-        res.send("product would send")
-      })
     }
-
-  )
+    fs.writeFile(path.join(__dirname, './Develop/db/db.json'), JSON.stringify(data), function (err) {
+      if (err) {
+        console.log("error");
+        res.status(200).send("Error");
+        return;
+      } else {
+        res.send("product would send");
+      }
+    })
+  })
 })
 
-app.delete("/api/notes/${id}", (res, req) => {
-  console.log("what's up");
-})
+// app.delete("/api/notes/${id}", (res, req) => {
+//   console.log("what's up");
+// })
 
 //when someone requests data going to need to read the file and send it back
 
@@ -115,4 +125,4 @@ app.delete("/api/notes/${id}", (res, req) => {
 // to listen at the PORT
 app.listen(PORT, () =>
   console.log(`Express server listening on port ${PORT}!`)
-);
+)

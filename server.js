@@ -80,16 +80,15 @@ app.post("/api/notes", (req, res) => {
   let note = req.body.note;
   let notesProduct = note;
 
-  fs.readFile(path.join(__dirname, './notesProduct/db.json'),
-    'utf - 8',
-    function (err, data) {
+  fs.readFile(path.join(__dirname, './notesProduct/db.json'), 'utf-8', function (err, data) {
+    if (err) {
+      console.log(err);
       data = JSON.parse(data)
       data.push(notesProduct);
 
-      fs.writeFile(path.join(__dirname, './notesProduct/db.json'),
-        function (err) {
-          res.send("product would send")
-        })
+      fs.writeFile(path.join(__dirname, './notesProduct/db.json'), JSON.stringify(data), function (err) {
+        res.send("product would send")
+      })
     }
 
   )

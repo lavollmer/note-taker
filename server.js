@@ -39,12 +39,80 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "public/index.html")));
 
 
-app.post("/api/newuser", (req, res) => {
-  fs.writeFile("signup.txt", req.body.newuser, (err) => {
-    if (err) return res.json({ status: "error" })
-    res.json({ status: "success" })
-  })
+// Send out the notes page
+//path join the directory name with the name of the file for an absolute file
+app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "public/notes.html")));
+
+// fetch routes for writing from index.js
+// const getNotes = () =>
+//   fetch('/api/notes', {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   });
+
+// const saveNote = (note) =>
+//   fetch('/api/notes', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(note)
+//   });
+
+// const deleteNote = (id) =>
+//   fetch(`/api/notes/${id}`, {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   });
+
+//listening for API notes
+app.get("/api/notes", (req, res) => {
+  console.log("hello");
+  res.sendFile(path.join(_dirname, './public/index.html'));
 })
+
+//send a new note back to the server to be added to the list of notes
+app.post("/api/notes", (req, res) => {
+  console.log("hi there");
+  let noteOne = req.body.noteOne;
+  let notesProduct = noteOne;
+
+  fs.readFile(path.join(_dirname, './notesProduct/db.json'),
+    'utf - 8',
+    function (err, data) {
+      data = JSON.parse(data)
+      data.push(notesProduct);
+
+      fs.writeFile(path.join(_dirname, './notesProduct/db.json'),
+        function (err) {
+          res.send("product would send")
+        })
+    }
+
+  )
+})
+
+app.delete("/api/notes/${id}", (res, req) => {
+  console.log("what's up");
+})
+
+//when someone requests data going to need to read the file and send it back
+
+
+//when request comes in to make a new note, read file what currently in there and add the new data and then write a new version of the file
+
+//read the file, delete what's supposed to be deleted, then write the new file
+
+// app.post("/api/newuser", (req, res) => {
+//   fs.writeFile("signup.txt", req.body.newuser, (err) => {
+//     if (err) return res.json({ status: "error" })
+//     res.json({ status: "success" })
+//   })
+// })
 
 // to listen at the PORT
 app.listen(PORT, () =>

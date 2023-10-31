@@ -98,7 +98,7 @@ app.post("/api/notes", (req, res) => {
         res.status(200).send("Error");
         return;
       } else {
-        res.send("product would send");
+        res.send(req.body.note);
       }
     })
   })

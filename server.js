@@ -15,12 +15,12 @@
     - Write a new version of that file
 */
 
+// Node js package - fs for writing and reading files
+const fs = require('fs');
 //Node js package - express
 const express = require('express');
 // Node js package - path
 const path = require('path');
-// Node js package - fs for writing and reading files
-const fs = require('fs');
 
 // using variable app calling the express function
 const app = express();
@@ -36,12 +36,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Send out the home page
 //path join the directory name with the name of the file for an absolute file
-app.get("/", (req, res) => res.sendFile(path.join(__dirname, "public/index.html")));
+app.get("/", (req, res) => res.sendFile(path.join(__dirname, "./Develop/public/index.html")));
 
-
-// Send out the notes page
+// Send out to the notes page
 //path join the directory name with the name of the file for an absolute file
-app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "public/notes.html")));
+app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./Develop/public/notes.html")));
 
 // fetch routes for writing from index.js
 // const getNotes = () =>
@@ -69,25 +68,25 @@ app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "public/notes.
 //     }
 //   });
 
-//listening for API notes
+//listening for API notes and sending file
 app.get("/api/notes", (req, res) => {
   console.log("hello");
-  res.sendFile(path.join(_dirname, './public/index.html'));
+  res.sendFile(path.join(__dirname, "./Develop/public/index.html"));
 })
 
 //send a new note back to the server to be added to the list of notes
 app.post("/api/notes", (req, res) => {
   console.log("hi there");
-  let noteOne = req.body.noteOne;
-  let notesProduct = noteOne;
+  let note = req.body.note;
+  let notesProduct = note;
 
-  fs.readFile(path.join(_dirname, './notesProduct/db.json'),
+  fs.readFile(path.join(__dirname, './notesProduct/db.json'),
     'utf - 8',
     function (err, data) {
       data = JSON.parse(data)
       data.push(notesProduct);
 
-      fs.writeFile(path.join(_dirname, './notesProduct/db.json'),
+      fs.writeFile(path.join(__dirname, './notesProduct/db.json'),
         function (err) {
           res.send("product would send")
         })

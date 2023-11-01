@@ -24,7 +24,7 @@ const path = require('path');
 // Node js package - uuid
 const { v4: uuidv4 } = require('uuid');
 
-//generate ID
+//generate varID
 const varID = uuidv4();
 
 // using variable app calling the express function
@@ -94,8 +94,16 @@ app.post("/api/notes", (req, res) => {
       console.log(err);
       res.status(200).send("Error");
       return
+      //parse data and push data
     } else {
       data = JSON.parse(data)
+
+      const newNote = {
+        id: varID,
+        title,
+        text
+      }
+
       data.push(notesProduct);
     }
     fs.writeFile(path.join(__dirname, './Develop/db/db.json'), JSON.stringify(data), function (err) {

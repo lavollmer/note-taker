@@ -5,11 +5,13 @@
     "text": "Test text"
   },
   {
-    "id": "title": "Dog Grooming",
+    "id": "",
+    "title": "Dog Grooming",
     "text": "Need to bring dog to groomer for haircut"
   },
   {
-    "id": "title": "Rake leaves",
+    "id": "",
+    "title": "Rake leaves",
     "text": "Need to rake leaves before first snowfall"
   }
 ]

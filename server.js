@@ -21,6 +21,11 @@ const fs = require('fs');
 const express = require('express');
 // Node js package - path
 const path = require('path');
+// Node js package - uuid
+const { v4: uuidv4 } = require('uuid');
+
+//generate ID
+const varID = uuidv4();
 
 // using variable app calling the express function
 const app = express();

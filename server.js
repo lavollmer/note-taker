@@ -96,17 +96,17 @@ app.post("/api/notes", (req, res) => {
       return
       //parse data and push data
     } else {
-      data = JSON.parse(data)
+      newData = JSON.parse(data)
 
       const newNote = {
         id: varID,
-        title,
-        text
+        title: newData,
+        text: newData
       }
 
-      data.push(notesProduct);
+      newData.push(newNote);
     }
-    fs.writeFile(path.join(__dirname, './Develop/db/db.json'), JSON.stringify(data), function (err) {
+    fs.writeFile(path.join(__dirname, './Develop/db/db.json'), JSON.stringify(newData), function (err) {
       if (err) {
         console.log("error");
         res.status(200).send("Error");

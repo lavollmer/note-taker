@@ -1,17 +1,1 @@
-[
-  {
-    "id": "Test id",
-    "title": "Test Title",
-    "text": "Test text"
-  },
-  {
-    "id": "",
-    "title": "Dog Grooming",
-    "text": "Need to bring dog to groomer for haircut"
-  },
-  {
-    "id": "",
-    "title": "Rake leaves",
-    "text": "Need to rake leaves before first snowfall"
-  }
-]
+[{"id":"Test id","title":"Test Title","text":"Test text"},{"id":"","title":"Dog Grooming","text":"Need to bring dog to groomer for haircut"},{"id":"","title":"Rake leaves","text":"Need to rake leaves before first snowfall"},{"id":"f6fb4926-6a62-4c1d-a395-971125e59ee4"}]

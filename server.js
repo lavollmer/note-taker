@@ -94,24 +94,28 @@ app.post("/api/notes", (req, res) => {
       console.log(err);
       res.status(200).send("Error");
       return
-      //parse data and push data
     } else {
-      newData = JSON.parse(data)
+      //parse data to make an object to work with in javascript
+      data = JSON.parse(data)
+      //testing for debugging
+      console.log(data);
 
-      const newNote = {
-        id: varID,
-        title: newData,
-        text: newData
+      //add generated random ID
+      const newID = {
+        id: varID
       }
 
-      newData.push(newNote);
+      data.push(newID);
+      //testing for debugging
+      console.log(data);
     }
-    fs.writeFile(path.join(__dirname, './Develop/db/db.json'), JSON.stringify(newData), function (err) {
+    fs.writeFile(path.join(__dirname, './Develop/db/db.json'), JSON.stringify(data), function (err) {
       if (err) {
         console.log("error");
         res.status(200).send("Error");
         return;
       } else {
+        // send new information to a note
         res.send(req.body.note);
       }
     })

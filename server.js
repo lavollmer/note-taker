@@ -102,9 +102,12 @@ app.post("/api/notes", (req, res) => {
 
       //add generated random ID
       const newID = {
-        id: varID
+        id: varID,
+        title: `${data.title}`,
+        text: `${data.text}`
       }
 
+      //add new ID number to db.json
       data.push(newID);
       //testing for debugging
       console.log(data);

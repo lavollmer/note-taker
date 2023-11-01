@@ -84,6 +84,7 @@ app.post("/api/notes", (req, res) => {
 
   //read the mock database file
   fs.readFile(path.join(__dirname, './Develop/db/db.json'), 'utf-8', function (err, data) {
+    //send error 
     if (err) {
       console.log(err);
       res.status(200).send("Error");

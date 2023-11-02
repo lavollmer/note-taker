@@ -18,5 +18,7 @@ Tutoring services were used to understand Express.js concepts.
 
 Gary Almes, U of MN bootcamp professor, directed us to for id generation: (https://www.npmjs.com/package/uuid)
 
+Heroku login issues debugged inspired from: (https://stackoverflow.com/questions/51815542/heroku-missing-required-flag-a)
+
 ## License
 None

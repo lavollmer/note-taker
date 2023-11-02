@@ -100,15 +100,15 @@ app.post("/api/notes", (req, res) => {
       //testing for debugging
       console.log(data);
 
-      //add generated random ID
-      const newID = {
+      //add generated random ID to a new note
+      const newNote = {
         id: varID,
-        title: `${data.title}`,
-        text: `${data.text}`
+        title: '',
+        text: ''
       }
 
-      //add new ID number to db.json
-      data.push(newID);
+      //add new ID number and new note to db.json
+      data.push(newNote);
       //testing for debugging
       console.log(data);
     }

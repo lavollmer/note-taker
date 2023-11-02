@@ -17,7 +17,7 @@ const app = express();
 const PORT = 3001;
 
 // static public files
-app.use(express.static(path.resolve(__dirname + "/public"));
+app.use(express.static(path.resolve(__dirname + "/public")));
 
 //middleware
 app.use(express.json());
@@ -35,7 +35,19 @@ app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./public/note
 //listening for API notes and sending file
 app.get("/api/notes", (req, res) => {
   console.log("hello");
-})
+  //code taken from below (structure) - need to send note data instead of index html
+  fs.readFile(path.resolve(__dirname, './db/db.json'), 'utf-8', function (err, data) {
+    //send error 
+    if (err) {
+      console.log(err);
+      res.status(200).send("Error");
+      return
+    } else {
+      //send note data back parsed
+      res.json(JSON.parse(data));
+    }
+  })
+});
 
 //send a new note back to the server to be added to the list of notes
 app.post("/api/notes", (req, res) => {

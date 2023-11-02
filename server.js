@@ -34,7 +34,7 @@ const app = express();
 const PORT = 3001;
 
 // static public files
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 //middleware
 app.use(express.json());
@@ -42,11 +42,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Send out the home page
 //path join the directory name with the name of the file for an absolute file
-app.get("/", (req, res) => res.sendFile(path.join(__dirname, "./Develop/public/index.html")));
+app.get("/", (req, res) => res.sendFile(path.join(__dirname, "./public/index.html")));
 
 // Send out to the notes page
 //path join the directory name with the name of the file for an absolute file
-app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./Develop/public/notes.html")));
+app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./public/notes.html")));
 
 // fetch routes for writing from index.js
 // const getNotes = () =>
@@ -78,7 +78,7 @@ app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./Develop/pub
 app.get("/api/notes", (req, res) => {
   console.log("hello");
   //send information to index.html public file
-  res.sendFile(path.join(__dirname, "./Develop/public/index.html"));
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 })
 
 //send a new note back to the server to be added to the list of notes
@@ -88,7 +88,7 @@ app.post("/api/notes", (req, res) => {
   let notesProduct = note;
 
   //read the mock database file
-  fs.readFile(path.join(__dirname, './Develop/db/db.json'), 'utf-8', function (err, data) {
+  fs.readFile(path.join(__dirname, './db/db.json'), 'utf-8', function (err, data) {
     //send error 
     if (err) {
       console.log(err);
@@ -112,7 +112,7 @@ app.post("/api/notes", (req, res) => {
       //testing for debugging
       console.log(data);
     }
-    fs.writeFile(path.join(__dirname, './Develop/db/db.json'), JSON.stringify(data), function (err) {
+    fs.writeFile(path.join(__dirname, './db/db.json'), JSON.stringify(data), function (err) {
       if (err) {
         console.log("error");
         res.status(200).send("Error");
@@ -124,24 +124,6 @@ app.post("/api/notes", (req, res) => {
     })
   })
 })
-
-// app.delete("/api/notes/${id}", (res, req) => {
-//   console.log("what's up");
-// })
-
-//when someone requests data going to need to read the file and send it back
-
-
-//when request comes in to make a new note, read file what currently in there and add the new data and then write a new version of the file
-
-//read the file, delete what's supposed to be deleted, then write the new file
-
-// app.post("/api/newuser", (req, res) => {
-//   fs.writeFile("signup.txt", req.body.newuser, (err) => {
-//     if (err) return res.json({ status: "error" })
-//     res.json({ status: "success" })
-//   })
-// })
 
 // to listen at the PORT
 app.listen(PORT, () =>

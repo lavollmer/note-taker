@@ -7,6 +7,7 @@ const path = require('path');
 // Node js package - uuid
 const { v4: uuidv4 } = require('uuid');
 
+
 //generate varID
 const varID = uuidv4();
 
@@ -35,7 +36,7 @@ app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./public/note
 //listening for API notes and sending file
 app.get("/api/notes", (req, res) => {
   //code taken from below (structure) - need to send note data instead of index.html file
-  fs.readFile(path.join(__dirname, './db/db.json'), 'utf-8', function (err, data) {
+  fs.readFile(path.resolve(__dirname, './db/db.json'), 'utf-8', function (err, data) {
     //send error 
     if (err) {
       console.log(err);
@@ -51,7 +52,7 @@ app.get("/api/notes", (req, res) => {
 //send a new note back to the server to be added to the list of notes
 app.post("/api/notes", (req, res) => {
   //read the mock database file
-  fs.readFile(path.join(__dirname, './db/db.json'), 'utf-8', function (err, data) {
+  fs.readFile(path.resolve(__dirname, './db/db.json'), 'utf-8', function (err, data) {
     //send error 
     if (err) {
       console.log(err);
@@ -66,8 +67,8 @@ app.post("/api/notes", (req, res) => {
       //add generated random ID to a new note
       const newNote = {
         id: varID,
-        title: '',
-        text: ''
+        title: req.body.title,
+        text: req.body.text
       }
 
       //add new ID number and new note to db.json
@@ -75,7 +76,7 @@ app.post("/api/notes", (req, res) => {
       //testing for debugging
       console.log(data);
     }
-    fs.writeFile(path.join(__dirname, './db/db.json'), JSON.stringify(data), function (err) {
+    fs.writeFile(path.resolve(__dirname, './db/db.json'), JSON.stringify(data), function (err) {
       if (err) {
         console.log("error");
         res.status(200).send("Error");

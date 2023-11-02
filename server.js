@@ -35,7 +35,6 @@ app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./public/note
 
 //listening for API notes and sending file
 app.get("/api/notes", (req, res) => {
-  //code taken from below (structure) - need to send note data instead of index.html file
   fs.readFile(path.resolve(__dirname, './db/db.json'), 'utf-8', function (err, data) {
     //send error 
     if (err) {
@@ -77,6 +76,7 @@ app.post("/api/notes", (req, res) => {
       console.log(data);
     }
     fs.writeFile(path.resolve(__dirname, './db/db.json'), JSON.stringify(data), function (err) {
+      //error testing
       if (err) {
         console.log("error");
         res.status(200).send("Error");

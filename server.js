@@ -43,7 +43,7 @@ app.get("/api/notes", (req, res) => {
       return
     } else {
       //send note data back parsed
-      res.json(JSON.stringify(data));
+      res.json(JSON.parse(data));
     }
   })
 });

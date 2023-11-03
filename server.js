@@ -65,7 +65,7 @@ app.post("/api/notes", (req, res) => {
 
       //add generated random ID to a new note
       const newNote = {
-        id: varID,
+        varID: varID,
         title: req.body.title,
         text: req.body.text
       }

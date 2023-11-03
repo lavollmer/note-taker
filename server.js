@@ -90,7 +90,7 @@ app.post("/api/notes", (req, res) => {
 })
 
 //delete a note
-app.delete("/api/notes/:varID", (req, res) => {
+app.delete(`/api/notes/${varID}`, (req, res) => {
   //read the mock database file
   fs.readFile(path.resolve(__dirname, './db/db.json'), 'utf-8', function (err, data) {
     //send error 

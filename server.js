@@ -89,8 +89,8 @@ app.post("/api/notes", (req, res) => {
   })
 })
 
-//send a new note back to the server to be added to the list of notes
-app.delete("/api/notes", (req, res) => {
+//delete a note
+app.delete("/api/notes/:varID", (req, res) => {
   //read the mock database file
   fs.readFile(path.resolve(__dirname, './db/db.json'), 'utf-8', function (err, data) {
     //send error 
@@ -103,13 +103,6 @@ app.delete("/api/notes", (req, res) => {
       data = JSON.parse(data)
       //testing for debugging
       console.log(data);
-
-      //delete note based on ID
-      // const newNote = {
-      //   id: req.body.varID,
-      //   title: req.body.title,
-      //   text: req.body.text
-      // }
 
       //return the data filtered
       function removeObjectWithId(data, varID) {

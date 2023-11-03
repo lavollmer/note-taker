@@ -2,16 +2,16 @@
   {
     "id": "1",
     "title": "Garden",
-    "text": "Plant tulips for the spring"
+    "data": "Plant tulips for the spring"
   },
   {
     "id": "2",
     "title": "Rake leaves",
-    "text": "Rake leaves in backyard on Sunday"
+    "data": "Rake leaves in backyard on Sunday"
   },
   {
     "id": "3",
     "title": "Take out garbage",
-    "text": "Put garbage and yard waste out"
+    "data": "Put garbage and yard waste out"
   }
 ]

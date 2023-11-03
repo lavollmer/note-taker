@@ -67,7 +67,7 @@ app.post("/api/notes", (req, res) => {
       const newNote = {
         id: varID,
         title: req.body.title,
-        text: req.body.text
+        data: req.body.text
       }
 
       //add new ID number and new note to db.json

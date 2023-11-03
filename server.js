@@ -108,12 +108,12 @@ app.delete(`/api/notes/${varID}`, (req, res) => {
     console.log(data);
   },
 
-    //return the data filtered and write a new file
+    //return the data filtered by comparing to each uuid ID
     data = function removeObjectWithId(data, varID) {
       data.filter((obj) => obj.varID !== varID)
     })
 
-
+  //write over with the new file data
   fs.writeFile(path.resolve(__dirname, './db/db.json'), JSON.stringify(data), function (err) {
     //error testing
     if (err) {

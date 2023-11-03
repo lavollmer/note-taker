@@ -107,23 +107,24 @@ app.delete(`/api/notes/${varID}`, (req, res) => {
     //testing for debugging
     console.log(data);
   },
-    //return the data filtered
+
+    //return the data filtered and write a new file
     data = function removeObjectWithId(data, varID) {
-      return data.filter((obj) => obj.varID !== varID);
-
-
-      fs.writeFile(path.resolve(__dirname, './db/db.json'), JSON.stringify(data), function (err) {
-        //error testing
-        if (err) {
-          console.log("error");
-          res.status(200).send("Error");
-          return;
-        } else {
-          // send new information to a note
-          res.send(req.body.note);
-        }
-      })
+      data.filter((obj) => obj.varID !== varID)
     })
+
+
+  fs.writeFile(path.resolve(__dirname, './db/db.json'), JSON.stringify(data), function (err) {
+    //error testing
+    if (err) {
+      console.log("error");
+      res.status(200).send("Error");
+      return;
+    } else {
+      // send new information to a note
+      res.send(req.body.note);
+    }
+  })
 });
 
 // to listen at the PORT

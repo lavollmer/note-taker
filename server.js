@@ -103,33 +103,29 @@ app.delete(`/api/notes/${varID}`, (req, res) => {
       data = JSON.parse(data)
       //testing for debugging
       console.log(data);
-
-      //return the data filtered
-      function removeObjectWithId(data, varID) {
-        return data.filter((obj) => obj.varID !== varID);
-
-        //calling function
-        removeObjectWithId(data, varID)
-      }
-
-      //testing for debugging
-      console.log(data);
     }
-    fs.writeFile(path.resolve(__dirname, './db/db.json'), JSON.stringify(data), function (err) {
-      //error testing
-      if (err) {
-        console.log("error");
-        res.status(200).send("Error");
-        return;
-      } else {
-        // send new information to a note
-        res.send(req.body.note);
-      }
+    //testing for debugging
+    console.log(data);
+  },
+    //return the data filtered
+    data = function removeObjectWithId(data, varID) {
+      return data.filter((obj) => obj.varID !== varID);
+
+
+      fs.writeFile(path.resolve(__dirname, './db/db.json'), JSON.stringify(data), function (err) {
+        //error testing
+        if (err) {
+          console.log("error");
+          res.status(200).send("Error");
+          return;
+        } else {
+          // send new information to a note
+          res.send(req.body.note);
+        }
+      })
     })
-  })
-})
+});
 
 // to listen at the PORT
 app.listen(PORT, () =>
-  console.log(`Express server listening on port ${PORT}!`)
-)
+  console.log(`Express server listening on port ${PORT}!`))

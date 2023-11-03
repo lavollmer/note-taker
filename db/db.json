@@ -1,14 +1,1 @@
-[
-  {
-    "title": "Garden",
-    "data": "Plant tulips for the spring"
-  },
-  {
-    "title": "Rake leaves",
-    "data": "Rake leaves in backyard on Sunday"
-  },
-  {
-    "title": "Take out garbage",
-    "data": "Put garbage and yard waste out"
-  }
-]
+[{"title":"Garden","data":"Plant tulips for the spring"},{"title":"Rake leaves","data":"Rake leaves in backyard on Sunday"},{"title":"Take out garbage","data":"Put garbage and yard waste out"}]

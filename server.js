@@ -15,7 +15,7 @@ const varID = uuidv4();
 const app = express();
 
 // the PORT were information is located
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 // static public files
 app.use(express.static(path.join(__dirname, "/public")));

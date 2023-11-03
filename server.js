@@ -107,9 +107,10 @@ app.delete(`/api/notes/${varID}`, (req, res) => {
       //return the data filtered
       function removeObjectWithId(data, varID) {
         return data.filter((obj) => obj.varID !== varID);
+
+        //calling function
+        removeObjectWithId(data, varID)
       }
-      //calling function
-      removeObjectWithId(data, varID)
 
       //testing for debugging
       console.log(data);

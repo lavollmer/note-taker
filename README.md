@@ -24,5 +24,13 @@ Heroku login issues debugged inspired from: (https://stackoverflow.com/questions
 
 Delete note code inspired by code in: https://javascript.plainenglish.io/javascript-remove-element-from-array-by-id-9c548f2aa27b
 
+Code was provided by tutoring services:
+  let notesKeep = []
+  for (var i = 0; i < database.length; i++) {
+    if (database[i].id != req.params.id) {
+      notesKeep.push(database[i])
+    }
+  }
+
 ## License
 None

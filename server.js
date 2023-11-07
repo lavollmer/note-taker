@@ -6,6 +6,7 @@ const express = require('express');
 const path = require('path');
 // Node js package - uuid
 const { v4: uuidv4 } = require('uuid');
+let database = require("./db/db.json")
 
 
 //generate varID
@@ -65,7 +66,7 @@ app.post("/api/notes", (req, res) => {
 
       //add generated random ID to a new note
       const newNote = {
-        varID: varID,
+        id: varID,
         title: req.body.title,
         text: req.body.text
       }
@@ -90,31 +91,41 @@ app.post("/api/notes", (req, res) => {
 })
 
 //delete a note
-app.delete(`/api/notes/${varID}`, (req, res) => {
+app.delete(`/api/notes/:id`, (req, res) => {
   //read the mock database file
-  fs.readFile(path.resolve(__dirname, './db/db.json'), 'utf-8', function (err, data) {
-    //send error 
-    if (err) {
-      console.log(err);
-      res.status(200).send("Error");
-      return
-    } else {
-      //parse data to make an object to work with in javascript
-      data = JSON.parse(data)
-      //testing for debugging
-      console.log(data);
+  // fs.readFile(path.resolve(__dirname, './db/db.json'), 'utf-8', function (err, data) {
+  //   //send error 
+  //   if (err) {
+  //     console.log(err);
+  //     res.status(200).send("Error");
+  //     return
+  //   } else {
+  //     //parse data to make an object to work with in javascript
+  //     data = JSON.parse(data)
+  //     //testing for debugging
+  //     console.log(data);
+  //   }
+  //   //testing for debugging
+  //   console.log(data);
+  // },
+
+  //:id = req.params.id   :potato = req.params.potato
+
+  //return the data filtered by comparing to each uuid ID
+  // database = function removeObjectWithId(database) {
+  //   let deleteID = req.params.id
+  //   database.filter((obj) => obj.id != deleteID)
+  // })
+  let notesKeep = []
+  for (var i = 0; i < database.length; i++) {
+    if (database[i].id != req.params.id) {
+      notesKeep.push(database[i])
     }
-    //testing for debugging
-    console.log(data);
-  },
+  }
 
-    //return the data filtered by comparing to each uuid ID
-    data = function removeObjectWithId(data, varID) {
-      data.filter((obj) => obj.varID !== varID)
-    })
-
+  database = notesKeep
   //write over with the new file data
-  fs.writeFile(path.resolve(__dirname, './db/db.json'), JSON.stringify(data), function (err) {
+  fs.writeFile(path.resolve(__dirname, './db/db.json'), JSON.stringify(database), function (err) {
     //error testing
     if (err) {
       console.log("error");
@@ -122,7 +133,7 @@ app.delete(`/api/notes/${varID}`, (req, res) => {
       return;
     } else {
       // send new information to a note
-      res.send(req.body.note);
+      res.json(database);
     }
   })
 });

@@ -2,15 +2,30 @@
 
 ## Project Description
 
-The goal of the project is to create a js file that connects the front-end with the back-end functionality. The technical requirements are express, node.js, nodemon, heroku deployment and package JSON. This project utilizes POSTMAN for testing purposes.
+The goal of the project is to create a js file that connects the front-end with the back-end functionality. The note taker application opens with a entry screen. When the user clicks "get started", they are brought to an area to take notes, save notes and delete the notes.
 
 This project solves the user's problem of tracking notes or daily tasks.
 
+## Technical Requirements
+
+Technical requirements include:
+* Express package
+* Node.js
+* Nodemon
+* Heroku Deployment
+* Package JSON
+* POSTMAN
+
 ## Usage
 
-Utilize for saving notes and taking notes for the end user's tasks.
+Screenshots: ![Home Page](./img/HomePageNoteTaker.png)
+![Note Page](./img/Note%20Page%20Part%201.png)
+![Note](./img/Note%20Page%20Part%202.png)
+![Note](./img/Note%20Page%20Part%203.png)
 
 Heroku Site: https://noter-taker-d6c57055bb47.herokuapp.com/
+
+Github Repo:https://github.com/lavollmer/note-taker
 
 ## Credits
 
